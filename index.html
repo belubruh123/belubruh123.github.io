@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Content from URL</title>
+</head>
+<body>
+    <div id="content"></div>
+
+    <script>
+        // Get the URL's query string (everything after the ? in the URL)
+        const urlParams = new URLSearchParams(window.location.search);
+        // Get the value of the 'data' parameter from the URL
+        let data = urlParams.get('data');
+
+        // If there's data, decode and display it as HTML content
+        if (data) {
+            // Replace newlines (\n) with <br> tags
+            data = data.replace(/\n/g, '<br>');
+
+            // Insert the processed content into the div
+            document.getElementById('content').innerHTML = data;
+        } else {
+            // If no 'data' parameter is in the URL, show a default message
+            document.getElementById('content').innerText = "No 'data' parameter provided in the URL.";
+        }
+    </script>
+</body>
+</html>
