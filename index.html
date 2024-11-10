@@ -12,39 +12,16 @@
         // Get the value of the 'data' parameter from the URL
         let data = urlParams.get('data');
 
-        // Create a new window
-        const newWindow = window.open('about:blank');
-
-        // Check if there's data
+        // If there's data, decode and replace everything in the document
         if (data) {
             // Replace newlines (\n) with <br> tags
             data = data.replace(/\n/g, '<br>');
 
-            // Write content to the new window
-            newWindow.document.write(`
-                <html>
-                    <head>
-                        <title>Dynamic Content</title>
-                    </head>
-                    <body>
-                        <div>${data}</div>
-                    </body>
-                </html>
-            `);
-            newWindow.document.close(); // Close the document to render the content
+            // Replace the entire HTML content with the data
+            document.documentElement.innerHTML = data;
         } else {
             // If no 'data' parameter is in the URL, show a default message
-            newWindow.document.write(`
-                <html>
-                    <head>
-                        <title>No Data Provided</title>
-                    </head>
-                    <body>
-                        <div>No 'data' parameter provided in the URL.</div>
-                    </body>
-                </html>
-            `);
-            newWindow.document.close(); // Close the document to render the content
+            document.documentElement.innerHTML = "<h1>No 'data' parameter provided in the URL.</h1>";
         }
     </script>
 </body>
