@@ -6,7 +6,7 @@
     <title>Dynamic Content from URL</title>
 </head>
 <body>
-    <div id="content"></div>
+    <div id="content">Initial Content</div>
 
     <script>
         // Get the URL's query string (everything after the ? in the URL)
@@ -14,16 +14,16 @@
         // Get the value of the 'data' parameter from the URL
         let data = urlParams.get('data');
 
-        // If there's data, decode and display it as HTML content
+        // If there's data, decode and replace all HTML content
         if (data) {
-            // Replace newlines (\n) with <br> tags
+            // Optionally replace newlines (\n) with <br> tags
             data = data.replace(/\n/g, '<br>');
 
-            // Insert the processed content into the div
-            document.getElementById('content').innerHTML = data;
+            // Replace the entire body content with the data
+            document.body.innerHTML = data;
         } else {
             // If no 'data' parameter is in the URL, show a default message
-            document.getElementById('content').innerText = "No 'data' parameter provided in the URL.";
+            document.body.innerHTML = "<h1>No 'data' parameter provided in the URL.</h1>";
         }
     </script>
 </body>
